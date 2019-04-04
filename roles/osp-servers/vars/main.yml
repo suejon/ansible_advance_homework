@@ -41,9 +41,6 @@
 #vars file for provision-instances
 flavor: m2.small
 keypair: ansible_ssh
-network:
-  public: 10.10.10.0/24
-  private: 20.20.20.0/24
 image: rhel-guest
 instances:
   - name: app1
