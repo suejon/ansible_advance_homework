@@ -9,6 +9,12 @@
     state: present
     tower_verify_ssl: no
 
+- name: remove ansible managed block tags
+  lineinfile:
+    dest: ~/.ssh/openstack.pem
+    state: absent
+    regexp: 'ANSIBLE MANAGED BLOCK'
+
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
     name: Connect_to_workstation
