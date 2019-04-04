@@ -6,4 +6,9 @@
     register: openstack_info
 
   - name: Delete instances
+    os_server:
+      cloud: ospcloud
+      name: "{{item.name}}"
+      state: absent
+    loop: "{{openstack_info.ansible_facts.openstack_servers}}"
    
