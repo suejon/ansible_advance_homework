@@ -1,5 +1,9 @@
 ---
 # tasks file for roles/osp-instance-delete
   - name: Fetch Instance Info
+    os_server_facts:
+     cloud: ospcloud
+    register: openstack_info
+
   - name: Delete instances
    
