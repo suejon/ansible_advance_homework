@@ -7,7 +7,7 @@
     scm_type: "git"
     scm_update_on_launch: "true"
     state: present
-    tower_verify_ssl: no
+    tower_verify_ssl: "false"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
