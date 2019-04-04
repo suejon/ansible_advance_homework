@@ -1,39 +1,68 @@
 ---
 # vars file for osp.servers
-osp_servers:
-  frontend:
-    name: frontend
-    state: present
-    image: rhel-guest
-    key_name: ansible_ssh
-    flavor: m2.small
-    security_group: frontend
-    meta:
-      - { group: frontends, deployment_name: QA}
-  app1:
-    name: app1
-    state: present
-    image: rhel-guest
-    key_name: ansible_ssh
-    flavor: m2.small
-    security_group: apps
-    meta:
-      - { group: apps, deployment_name: QA}
-  app2:
-    name: app2
-    state: present
-    image: rhel-guest
-    key_name: ansible_ssh
-    flavor: m2.small
-    security_group: apps
-    meta:
-      - { group: apps, deployment_name: QA}
-  db:
-    name: db
-    state: present
-    image: rhel-guest
-    key_name: ansible_ssh
-    flavor: m2.small
-    security_group: db
-    meta:
-      - { group: appdbs, deployment_name: QA}
+# osp_servers:
+#   frontend:
+#     name: frontend
+#     state: present
+#     image: rhel-guest
+#     key_name: ansible_ssh
+#     flavor: m2.small
+#     security_group: frontend
+#     meta:
+#       - { group: frontends, deployment_name: QA}
+#   app1:
+#     name: app1
+#     state: present
+#     image: rhel-guest
+#     key_name: ansible_ssh
+#     flavor: m2.small
+#     security_group: apps
+#     meta:
+#       - { group: apps, deployment_name: QA}
+#   app2:
+#     name: app2
+#     state: present
+#     image: rhel-guest
+#     key_name: ansible_ssh
+#     flavor: m2.small
+#     security_group: apps
+#     meta:
+#       - { group: apps, deployment_name: QA}
+#   db:
+#     name: db
+#     state: present
+#     image: rhel-guest
+#     key_name: ansible_ssh
+#     flavor: m2.small
+#     security_group: db
+#     meta:
+#       - { group: appdbs, deployment_name: QA}
+
+#vars file for provision-instances
+flavor: m2.small
+keypair: ansible_ssh
+network:
+  public: 10.10.10.0/24
+  private: 20.20.20.0/24
+image: rhel-guest
+instances:
+  - name: app1
+    group: apps
+    deployment_name: QA
+    port: 8080
+    security_group_name: apps
+  - name: app2
+    group: apps
+    deployment_name: QA
+    port: 8080
+    security_group_name: apps
+  - name: db
+    group: appdbs
+    deployment_name: QA
+    port: 5432
+    security_group_name: db
+  - name: frontend
+    group: frontends
+    deployment_name: QA
+    port: 80
+    security_group_name: frontend
