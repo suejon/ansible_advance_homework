@@ -11,7 +11,8 @@
 
   - name: Curl website
     uri:
-      url: "{{item.accessIPv4}}"
+      url: http://{{item.public_v4}}
+      return_content: yes
     loop: "{{openstack_info.ansible_facts.openstack_servers}}"
     register: webpage
 
