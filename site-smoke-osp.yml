@@ -12,7 +12,7 @@
   - name: Curl website
     uri:
       url: "{{item.public_v4}}"
-    loop: "{{openstack_info}}"
+    loop: "{{openstack_info.ansible_facts.openstack_servers}}"
     register: webpage
 
 
