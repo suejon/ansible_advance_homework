@@ -5,9 +5,7 @@
     scm_url: "{{scm_url}}"
     scm_branch: "{{scm_branch}}"
     scm_type: "git"
-    tower_host: "{{host_name}}"
-    tower_username: "{{user_name}}"
-    tower_password: "{{password}}"
+    scm_update_on_launch: "true"
     state: present
     tower_verify_ssl: false
 
