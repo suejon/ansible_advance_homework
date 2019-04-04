@@ -1,2 +1,50 @@
 ---
 # tasks file for app-tier
+
+# Setup webservers
+- name: install tomcat
+  package:
+    name: tomcat
+    state: latest
+- name: enable tomcat at boot
+  service:
+    name: tomcat
+    enabled: yes
+
+- name: create ansible tomcat directory
+  file:
+    path: "/usr/share/tomcat/webapps/{{item}}"
+    state: directory
+  with_items:
+    - ROOT
+    - ansible
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: ../templates/index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: "../templates/index.html.{{ansible_hostname}}"
+    dest: /usr/share/tomcat/webapps/ansible/index.html
+    mode: 0644
+
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
+
+- name: install apache
+  yum:
+    name: httpd
+    state: latest
+- name: enable apache at boot
+  service:
+    name: httpd
+    enabled: yes
+- name: start apache
+  service:
+    name: httpd
+    state: started
