@@ -18,6 +18,7 @@
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
       curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
       cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
+      chmod 644 /etc/yum.repos.d/internal.repo
   loop: "{{instances}}"
   register: instanceip
 
