@@ -1,9 +1,5 @@
 ---
 # tasks file for lb-tier
-- name: install http cli client
-  package:
-    name: httpie
-    state: latest
 - name: install HAProxy
   yum:
     name=haproxy state=latest
