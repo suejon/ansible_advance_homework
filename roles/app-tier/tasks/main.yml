@@ -21,13 +21,14 @@
 
 - name: copy static index.html to tomcat webapps/ansible/index.html
   template:
-    src: ../templates/index.html.j2
+    src: index.html.j2
     dest: /usr/share/tomcat/webapps/ROOT/index.html
     mode: 0644
 
 - name: copy static index.html to tomcat webapps/ansible/index.html
+  gather_facts: true
   template:
-    src: "../templates/index.html.{{ansible_hostname}}"
+    src: index.html.{{ansible_hostname}}
     dest: /usr/share/tomcat/webapps/ansible/index.html
     mode: 0644
 
